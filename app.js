@@ -3,17 +3,17 @@ const demoUsers = {
     'student@college.edu': {
         password: 'student123',
         role: 'student',
-        name: 'John Student',
+        name: 'DIYA KRISHNA Student',
         id: 'S2023001',
-        department: 'Computer Science',
+        department: 'DSP',
         semester: '5th'
     },
     'teacher@college.edu': {
         password: 'teacher123',
         role: 'teacher',
-        name: 'Dr. Smith',
+        name: 'Dr. ANITHA S',
         id: 'T2023001',
-        department: 'Computer Science',
+        department: 'DSP',
         designation: 'Professor'
     }
 };
@@ -763,4 +763,5 @@ document.addEventListener('keydown', function(e) {
             location.reload();
         }
     }
+
 });
