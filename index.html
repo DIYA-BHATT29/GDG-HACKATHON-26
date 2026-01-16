@@ -4,26 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart Attend+</title>
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-  
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
-  
+
   <!-- Google Charts -->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-  
+
+  <!-- 🔥 Firebase SDK (COMPAT – matches your JS style) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <link rel="stylesheet" href="style.css">
+
   <style>
-    /* Hide dashboard initially */
     #dashboard {
       display: none;
     }
-    
-    /* Loading spinner */
+
     .spinner {
       display: none;
       border: 4px solid rgba(0, 0, 0, 0.1);
@@ -34,16 +33,17 @@
       animation: spin 1s linear infinite;
       margin: 20px auto;
     }
-    
+
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
   </style>
 </head>
+
 <body>
 
-<!-- Login Page -->
+<!-- ================= LOGIN PAGE ================= -->
 <div id="login-page">
   <div class="card login-card">
     <h2>Smart Attend+</h2>
@@ -51,6 +51,7 @@
 
     <input id="email" type="email" placeholder="College Email" required>
     <input id="password" type="password" placeholder="Password" required>
+
     <select id="role">
       <option value="student">Student</option>
       <option value="teacher">Teacher</option>
@@ -62,14 +63,14 @@
   </div>
 </div>
 
-<!-- Dashboard Page -->
+<!-- ================= DASHBOARD ================= -->
 <div id="dashboard">
   <header>
     🌸 Smart Attendance & Wellness Portal
     <button onclick="logout()" class="logout-btn">Logout</button>
   </header>
 
-  <!-- Motivation -->
+  <!-- Date & User Info -->
   <div class="motivation-bar">
     <div class="datetime">
       <span id="date"></span> • <span id="time"></span>
@@ -78,13 +79,15 @@
       <span id="user-email"></span> | <span id="user-role"></span>
     </div>
   </div>
-  
-  <!-- Motivation Quote Box -->
+
+  <!-- Quote -->
   <div class="motivation-bar">
     <p id="quoteText"></p>
   </div>
 
+  <!-- Dashboard Cards -->
   <div class="dashboard-grid">
+
     <div class="card">
       <h3>📷 Mark Attendance</h3>
       <button onclick="markAttendance()">Scan QR & Mark</button>
@@ -105,9 +108,9 @@
 
     <div class="card">
       <h3>🧾 Audit Logs</h3>
-      <div id="chart_div"></div>
+      <div id="chart_div" style="height: 250px;"></div>
     </div>
-    
+
     <div class="card">
       <h3>📈 Attendance Summary</h3>
       <div id="attendance-summary">
@@ -116,16 +119,38 @@
         <p>Percentage: <span id="attendance-percentage">0%</span></p>
       </div>
     </div>
-    
+
     <div class="card">
       <h3>🎯 Today's Classes</h3>
       <div id="todays-classes">
         <p>No classes scheduled for today</p>
       </div>
     </div>
+
   </div>
 </div>
 
+<!-- ================= FIREBASE CONFIG ================= -->
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "XXXXXXX",
+    appId: "XXXXXXX"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Firebase services (used in app.js)
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
+
+<!-- ================= MAIN JS ================= -->
 <script src="app.js"></script>
+
 </body>
 </html>
